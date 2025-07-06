@@ -1,6 +1,5 @@
 import unittest
 from unittest.mock import patch, mock_open
-import json
 import os
 from src.product import Product
 from src.category import Category
@@ -10,10 +9,16 @@ from src.utils import read_json, create_objects_from_json
 class TestJsonFunctions(unittest.TestCase):
 
     @patch("builtins.open", new_callable=mock_open,
-           read_data='[{"name": "Category1", "products": [{"name": "Product1", "description": "512GB, Gray space", "quantity": 5, "price": 10.99}]}]')
+           read_data='[{"name": "Category1", '
+                     '"products": [{"name": "Product1", '
+                     '"description": "512GB, Gray space",'
+                     ' "quantity": 5, "price": 10.99}]}]')
     def test_read_json(self, mock_file):
         path = "fake/path/to/file.json"
-        expected_output = [{"name": "Category1", "products": [{"name": "Product1", "description": "512GB, Gray space", "quantity": 5, "price": 10.99}]}]
+        expected_output = [{"name": "Category1",
+                            "products": [{"name": "Product1",
+                                          "description": "512GB, Gray space",
+                                          "quantity": 5, "price": 10.99}]}]
         result = read_json(path)
         self.assertEqual(result, expected_output)
         mock_file.assert_called_once_with(os.path.abspath(path), 'r', encoding="UTF-8")
@@ -22,7 +27,9 @@ class TestJsonFunctions(unittest.TestCase):
         data = [{"name": "Category1",
                  "description": "Смартфоны, как средство не только коммуникации, "
                                 "но и получения дополнительных функций для удобства жизни",
-                 "products": [{"name": "Product1", "description": "512GB, Gray space", "quantity": 5, "price": 10.99}]}]
+                 "products": [{"name": "Product1",
+                               "description": "512GB, Gray space",
+                               "quantity": 5, "price": 10.99}]}]
         categories = create_objects_from_json(data)
 
         self.assertEqual(len(categories), 1)
@@ -34,5 +41,3 @@ class TestJsonFunctions(unittest.TestCase):
         self.assertEqual(categories[0].products[0].price, 10.99)
         self.assertEqual(categories[0].products[0].description, "512GB, Gray space")
         self.assertEqual(categories[0].products[0].quantity, 5)
-
-

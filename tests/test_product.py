@@ -1,5 +1,3 @@
-import pytest
-
 
 def test_product_init(first_product, second_product):
     assert first_product.name == 'Samsung Galaxy S23 Ultra'
