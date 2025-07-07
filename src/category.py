@@ -1,4 +1,4 @@
-from src.product import  Product
+from src.product import Product
 
 
 class Category:
@@ -15,7 +15,6 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(products) if products else 0
 
-
     def add_product(self, product: Product):
         self.__products.append(product)
         Category.product_count += product.quantity
@@ -31,3 +30,7 @@ class Category:
     def products(self, product: Product):
         self.__products.append(product)
         Category.product_count += 1
+
+    @property
+    def category_in_products(self):
+        return self.__products

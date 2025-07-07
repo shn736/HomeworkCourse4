@@ -11,8 +11,6 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-
-
     @classmethod
     def new_product(cls, product_data):
         name = product_data["name"]

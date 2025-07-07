@@ -27,6 +27,14 @@ def second_product():
 def category():
     return Category(
         "Телевизоры",
-        "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+        "Современный телевизор, который позволяет наслаждаться просмотром",
         ["Iphone 15", "512GB, Gray space"]
     )
+
+
+@pytest.fixture
+def product():
+    return [
+        {"Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5},
+        {"Iphone 15", "512GB, Gray space", 210000.0, 8}
+    ]
