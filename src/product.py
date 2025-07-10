@@ -4,12 +4,20 @@ class Product:
     description: str
     price: float
     quantity: int
+    summ_price: int
 
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        Product.summ_price = self.price * self.quantity
+
+    def __str__(self):
+        return f"{self.name}, {self.__price} руб. Остаток: {self.quantity} шт."
+
+    def __add__(self, other):
+        return  self.summ_price + other.summ_price
 
     @classmethod
     def new_product(cls, product_data):
