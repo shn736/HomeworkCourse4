@@ -33,3 +33,7 @@ def test_set_products(category):
 
     assert len(category.category_in_products) == 3
     assert category.product_count == 16
+
+
+def test_category_str(first_product):
+    assert str(first_product) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
