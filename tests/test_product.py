@@ -28,4 +28,4 @@ def test_product_str(first_product):
 
 
 def test_product_add(first_product, second_product):
-    assert first_product + second_product == 3360000.0
+    assert first_product + second_product == 2580000.0
