@@ -1,3 +1,5 @@
+import pytest
+
 from src.product import Product
 
 
@@ -37,3 +39,23 @@ def test_set_products(category):
 
 def test_category_str(first_product):
     assert str(first_product) == "Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток: 5 шт."
+
+
+def test_category_products_property(category):
+    assert category.products == 'Iphone 15.\n512GB, Gray space.\n'
+
+
+def test_category_products_setter(category, first_product):
+    assert len(category.category_in_products) == 2
+    category.products = first_product
+    assert len(category.category_in_products) == 3
+
+
+def test_category_products_setter_error(category, first_product):
+    with pytest.raises(TypeError):
+        category.products = "Not a product"
+
+
+def test_category_products_setter_smartphone(category, product_smartphone1):
+    category.products = product_smartphone1
+    assert category.category_in_products [0] == 'Iphone 15'

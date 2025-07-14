@@ -29,7 +29,7 @@ class Category:
     def products(self):
         products_str = ""
         for product in self.__products:
-            products_str += f"{str(product)} шт.\n"
+            products_str += f"{str(product)}.\n"
         return products_str
 
     @products.setter
