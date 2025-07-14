@@ -58,4 +58,4 @@ def test_category_products_setter_error(category, first_product):
 
 def test_category_products_setter_smartphone(category, product_smartphone1):
     category.products = product_smartphone1
-    assert category.category_in_products [0] == 'Iphone 15'
+    assert category.category_in_products[0] == 'Iphone 15'
