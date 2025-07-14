@@ -19,20 +19,26 @@ class Category:
         return f"{self.name}, количество продуктов: {len(self.__products)} шт."
 
     def add_product(self, product: Product):
-        self.__products.append(product)
-        Category.product_count += product.quantity
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += product.quantity
+        else:
+            raise TypeError
 
     @property
     def products(self):
         products_str = ""
         for product in self.__products:
-            products_str += f"{str(product)} шт.\n"
+            products_str += f"{str(product)}.\n"
         return products_str
 
     @products.setter
     def products(self, product: Product):
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def category_in_products(self):

@@ -35,7 +35,7 @@ class TestJsonFunctions(unittest.TestCase):
         self.assertEqual(len(categories), 1)
         self.assertIsInstance(categories[0], Category)
         self.assertEqual(categories[0].name, "Category1")
-        self.assertEqual(len(categories[0].products), 40)
+        self.assertEqual(len(categories[0].products), 37)
         self.assertIsInstance(categories[0].category_in_products[0], Product)
         self.assertEqual(categories[0].category_in_products[0].name, "Product1")
         self.assertEqual(categories[0].category_in_products[0].price, 10.99)
