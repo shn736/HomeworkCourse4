@@ -37,7 +37,7 @@ class Category:
     def products(self, product: Product):
         if isinstance(product, Product):
             try:
-                if product.quantity == 0:
+                if len(self.__products) == 0:
                     raise ZeroQuantityProduct("Нельзя добавить товар с нулевым количеством")
             except ZeroDivisionError as e:
                 print(str(e))
@@ -56,6 +56,6 @@ class Category:
 
     def middle_price(self):
         try:
-            return sum([product.price for product in self.__products]) / len(self.__products)
+            return sum([products.price for products in self.category_in_products]) / len(self.category_in_products)
         except ZeroDivisionError:
             return 0

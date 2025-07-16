@@ -1,5 +1,5 @@
 from src.product import Product
-
+import pytest
 
 def test_product_init(first_product, second_product):
     assert first_product.name == 'Samsung Galaxy S23 Ultra'
@@ -29,3 +29,14 @@ def test_product_str(first_product):
 
 def test_product_add(first_product, second_product):
     assert first_product + second_product == 2580000.0
+
+
+def test_product_zero_quantity():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product(
+            name="Samsung Galaxy S23 Ultra",
+            description="256GB, Серый цвет, 200MP камера",
+            price=180000.0,
+            quantity=0
+        )
+
