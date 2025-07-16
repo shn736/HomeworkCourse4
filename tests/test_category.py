@@ -1,6 +1,10 @@
 import pytest
+from pyexpat.errors import messages
 
+from src.category import Category
+from src.exceptions import ZeroQuantityProduct
 from src.product import Product
+
 
 
 def test_category_init(category):
@@ -58,4 +62,18 @@ def test_category_products_setter_error(category, first_product):
 
 def test_category_products_setter_smartphone(category, product_smartphone1):
     category.products = product_smartphone1
-    assert category.category_in_products [0] == 'Iphone 15'
+    assert category.category_in_products[0] == 'Iphone 15'
+
+
+def test_custom_exception(capsys, category):
+    category_add = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+    category.products = category_add
+    message = capsys.readouterr()
+    assert message.out.strip().split('\n')[-2] == "Товар добавлен"
+    assert message.out.strip().split('\n')[-1] == "Обработка добавления товара завершена"
+
+
+def test_custom_exception_zero(category_without_product, first_product):
+    with pytest.raises(ZeroQuantityProduct) as exc_info:
+        category_without_product.products = first_product
+    assert str(exc_info.value) == "Нельзя добавить товар с нулевым количеством"
